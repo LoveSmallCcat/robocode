@@ -8,6 +8,8 @@
 package sample;
 
 
+import org.junit.Assert;
+import org.junit.Test;
 import robocode.AdvancedRobot;
 import robocode.util.Utils;
 import static robocode.util.Utils.normalAbsoluteAngle;
@@ -18,6 +20,7 @@ import java.awt.event.KeyEvent;
 import static java.awt.event.KeyEvent.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -259,5 +262,58 @@ public class Interactive_v2 extends AdvancedRobot {
 			return 270;
 		}
 		return 0;
+	}
+
+	@Test
+	public void desiredDirectionTest() {
+		// Test case 1: Up and Right directions
+		directions.clear();
+		directions.add(Direction.UP);
+		directions.add(Direction.RIGHT);
+		Assert.assertEquals(45, this.desiredDirection(), 0.001);
+
+		// Test case 2: Up and Left directions
+		directions.clear();
+		directions.add(Direction.UP);
+		directions.add(Direction.LEFT);
+		// Assert that the desired direction matches the expected value
+		Assert.assertEquals(315, this.desiredDirection(), 0.001);
+
+		// Test case 3: Up direction only
+		directions.clear();
+		directions.add(Direction.UP);
+		Assert.assertEquals(0, this.desiredDirection(), 0.001);
+
+		// Test case 4: Down and Right directions
+		directions.clear();
+		directions.add(Direction.DOWN);
+		directions.add(Direction.RIGHT);
+		Assert.assertEquals(135, this.desiredDirection(), 0.001);
+
+		// Test case 5: Down and Left directions
+		directions.clear();
+		directions.add(Direction.DOWN);
+		directions.add(Direction.LEFT);
+		Assert.assertEquals(225, this.desiredDirection(), 0.001);
+
+		// Test case 6: Down direction only
+		directions.clear();
+		directions.add(Direction.DOWN);
+		Assert.assertEquals(180, this.desiredDirection(), 0.001);
+
+		// Test case 7: Right direction only
+		directions.clear();
+		directions.add(Direction.RIGHT);
+		Assert.assertEquals(90, this.desiredDirection(), 0.001);
+
+		// Test case 8: Left direction only
+		directions.clear();
+		directions.add(Direction.LEFT);
+		// Assert that the desired direction matches the expected value
+		Assert.assertEquals(270, this.desiredDirection(), 0.001);
+
+		// Test case 9: No directions
+		directions.clear();
+		Assert.assertEquals(0, this.desiredDirection(), 0.001);
 	}
 }

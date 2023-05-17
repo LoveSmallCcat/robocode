@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     implementation(project(":robocode.api"))
+    implementation("junit:junit:4.13.1")
 }
 
 description = "Robocode Samples"

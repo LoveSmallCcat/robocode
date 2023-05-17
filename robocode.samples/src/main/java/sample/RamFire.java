@@ -25,7 +25,7 @@ import java.awt.*;
  * @author Flemming N. Larsen (contributor)
  */
 public class RamFire extends Robot {
-	int turnDirection = 1; // Clockwise or counterclockwise
+	public int turnDirection = 1; // Clockwise or counterclockwise
 
 	/**
 	 * run: Spin around looking for a target
