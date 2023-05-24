@@ -9,7 +9,10 @@ dependencies {
     implementation(project(":robocode.host"))
     implementation("org.picocontainer:picocontainer:2.15")
     implementation("net.sf.robocode:codesize:1.2")
+    testImplementation("junit:junit:4.13.1")
 }
+
+
 
 description = "Robocode Repository"
 

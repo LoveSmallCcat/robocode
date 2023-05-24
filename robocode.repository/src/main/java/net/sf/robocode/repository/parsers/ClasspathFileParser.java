@@ -28,7 +28,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class ClasspathFileParser {
 
-	private final ClasspathHandler classpathHandler = new ClasspathHandler();
+	public ClasspathHandler classpathHandler = new ClasspathHandler();
 
 	public void parse(URL url) {
 		try {
@@ -44,9 +44,9 @@ public class ClasspathFileParser {
 		return classpathHandler.outputPath;
 	}
 
-	private static class ClasspathHandler extends DefaultHandler {
-		String outputPath = null;
-		List<String> sourcePaths = new ArrayList<String>();		
+	public static class ClasspathHandler extends DefaultHandler {
+		public String outputPath = null;
+		public List<String> sourcePaths = new ArrayList<String>();
 
 		public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 			if ("classpathentry".equals(qName)) {
@@ -58,6 +58,6 @@ public class ClasspathFileParser {
 					outputPath = attributes.getValue("path");
 				}
 			}
-		}			
+		}
 	}
 }

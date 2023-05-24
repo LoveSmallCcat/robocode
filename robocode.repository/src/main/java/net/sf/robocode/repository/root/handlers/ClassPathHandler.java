@@ -82,4 +82,6 @@ public class ClassPathHandler extends RootHandler {
 		root.updateItems(force);
 		newRoots.put(key, root);
 	}
+
+
 }

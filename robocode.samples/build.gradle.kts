@@ -6,8 +6,13 @@ plugins {
 dependencies {
     implementation(project(":robocode.api"))
     implementation("junit:junit:4.13.1")
+
 }
 
+dependencies {
+    // Other dependencies
+    testImplementation ("org.mockito:mockito-core:3.12.4")
+}
 description = "Robocode Samples"
 
 java {
