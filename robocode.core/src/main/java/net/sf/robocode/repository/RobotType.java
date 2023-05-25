@@ -134,4 +134,6 @@ public final class RobotType implements Serializable {
 		RobotType other = (RobotType) obj;
 		return (typeFlags == other.typeFlags);
 	}
+
+
 }

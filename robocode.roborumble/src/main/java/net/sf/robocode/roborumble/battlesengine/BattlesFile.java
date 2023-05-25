@@ -8,9 +8,17 @@
 package net.sf.robocode.roborumble.battlesengine;
 
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * The BattlesFile maintains Battles to run by BattlesRunner
@@ -41,7 +49,8 @@ public final class BattlesFile {
 			if (br != null) {
 				try {
 					br.close();
-				} catch (IOException ignore) {}
+				} catch (IOException ignore) {
+				}
 			}
 		}
 		return false;
@@ -62,7 +71,12 @@ public final class BattlesFile {
 		outtxt.close();
 	}
 
-	public void writeBattle(RumbleBattle rumbleBattle){
+	public void writeBattle(RumbleBattle rumbleBattle) {
 		outtxt.println(rumbleBattle);
 	}
+
+	private static final String TEST_FILENAME = "test_battles.txt";
+
+	private BattlesFile battlesFile;
+
 }

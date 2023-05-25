@@ -7,6 +7,7 @@ dependencies {
     implementation(project(":robocode.api"))
     implementation(project(":robocode.core"))
     implementation("net.sf.robocode:codesize:1.2")
+    implementation("org.junit.jupiter:junit-jupiter:5.8.1")
     runtimeOnly(project(":robocode.battle"))
 }
 

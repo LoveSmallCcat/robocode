@@ -8,6 +8,10 @@
 package net.sf.robocode.roborumble.netengine;
 
 
+import net.sf.robocode.roborumble.battlesengine.CompetitionsSelector;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -17,6 +21,7 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.InflaterInputStream;
 
 import static net.sf.robocode.roborumble.util.PropertiesUtil.getProperties;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 /**

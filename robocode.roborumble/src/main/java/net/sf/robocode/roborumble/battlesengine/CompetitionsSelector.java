@@ -10,11 +10,17 @@ package net.sf.robocode.roborumble.battlesengine;
 
 import static net.sf.robocode.roborumble.util.PropertiesUtil.getProperties;
 import static net.sf.robocode.roborumble.util.PropertiesUtil.storeProperties;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.Properties;
 
 import net.sf.robocode.repository.CodeSizeCalculator;
+import net.sf.robocode.roborumble.util.PropertiesUtil;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 
 /**
@@ -78,4 +84,9 @@ public class CompetitionsSelector {
 	public boolean checkCompetitorsForSize(String bot1, String bot2, long maxsize) {
 		return checkCompetitorForSize(bot1, maxsize) && checkCompetitorForSize(bot2, maxsize);
 	}
+
+	public Properties getSizes() {
+		return sizes;
+	}
+
 }
