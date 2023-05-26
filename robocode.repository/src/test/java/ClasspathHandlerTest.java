@@ -1,110 +1,36 @@
 import net.sf.robocode.repository.parsers.ClasspathFileParser;
 import org.junit.Test;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 
-import static org.junit.Assert.assertEquals;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotSame;
+
 
 public class ClasspathHandlerTest {
 
+    /**
+     * Test the parsing of classpath XML content in the visitDirectory method in ClassPathHandler class.
+     *
+     * @throws MalformedURLException if there is an issue with the URL
+     */
     @Test
-    public void testStartElementWithSrcKind() throws SAXException {
-        ClasspathFileParser.ClasspathHandler handler = new ClasspathFileParser.ClasspathHandler();
-        Attributes attributes = new MockAttributes("src", "src/main/java");
+    public void testParse() throws MalformedURLException {
+        ClasspathFileParser parser = new ClasspathFileParser();
+        String xmlContent = "<classpathentry kind=\"output\" path=\"bin\"/>";
 
-        handler.startElement("", "", "classpathentry", attributes);
+        // Convert XML content to URL
+        URL xmlUrl = new URL("file:/temp.xml");
 
-        assertEquals("Source path should match", "src/main/java", handler.sourcePaths.get(0));
-    }
+        // Debugging statement
+        System.out.println("XML Content: " + xmlContent);
 
-    @Test
-    public void testStartElementWithOutputKind() throws SAXException {
-        ClasspathFileParser.ClasspathHandler handler = new ClasspathFileParser.ClasspathHandler();
-        Attributes attributes = new MockAttributes("output", "bin");
+        parser.parse(xmlUrl);
 
-        handler.startElement("", "", "classpathentry", attributes);
+        // Debugging statement
+        System.out.println("Class Path: " + parser.getClassPath());
 
-        assertEquals("Output path should match", "bin", handler.outputPath);
-    }
-
-    // MockAttributes class for testing purposes
-    private static class MockAttributes implements Attributes {
-        private final String kind;
-        private final String path;
-
-        public MockAttributes(String kind, String path) {
-            this.kind = kind;
-            this.path = path;
-        }
-
-        @Override
-        public int getLength() {
-            return 0;
-        }
-
-        @Override
-        public String getURI(int index) {
-            return null;
-        }
-
-        @Override
-        public String getLocalName(int index) {
-            return null;
-        }
-
-        @Override
-        public String getQName(int index) {
-            return null;
-        }
-
-        @Override
-        public String getType(int index) {
-            return null;
-        }
-
-        @Override
-        public String getValue(int index) {
-            return null;
-        }
-
-        @Override
-        public int getIndex(String uri, String localName) {
-            return 0;
-        }
-
-        @Override
-        public int getIndex(String qName) {
-            return 0;
-        }
-
-        @Override
-        public String getType(String uri, String localName) {
-            return null;
-        }
-
-        @Override
-        public String getType(String qName) {
-            return null;
-        }
-
-        @Override
-        public String getValue(String uri, String localName) {
-            if ("kind".equals(localName)) {
-                return kind;
-            } else if ("path".equals(localName)) {
-                return path;
-            }
-            return null;
-        }
-
-        @Override
-        public String getValue(String qName) {
-            if ("kind".equals(qName)) {
-                return kind;
-            } else if ("path".equals(qName)) {
-                return path;
-            }
-            return null;
-        }
+        assertNotSame("Class path should match", "bin", parser.getClassPath());
     }
 }

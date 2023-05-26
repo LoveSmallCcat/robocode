@@ -8,8 +8,11 @@
 package net.sf.robocode.roborumble.netengine;
 
 
+import org.junit.jupiter.api.Test;
+
 import static net.sf.robocode.roborumble.util.PropertiesUtil.getProperties;
 import static net.sf.robocode.roborumble.util.PropertiesUtil.storeProperties;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -121,4 +124,5 @@ public class UpdateRatingFiles {
 		values = value[0] + "," + battles + "," + value[2];
 		ratings.setProperty(bot, values);
 	}
+
 }

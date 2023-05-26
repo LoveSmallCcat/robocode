@@ -44,6 +44,14 @@ public class ClasspathFileParser {
 		return classpathHandler.outputPath;
 	}
 
+	public ClasspathHandler getClasspathHandler() {
+		return classpathHandler;
+	}
+
+	public void setClasspathHandler(ClasspathHandler classpathHandler) {
+		this.classpathHandler = classpathHandler;
+	}
+
 	public static class ClasspathHandler extends DefaultHandler {
 		public String outputPath = null;
 		public List<String> sourcePaths = new ArrayList<String>();

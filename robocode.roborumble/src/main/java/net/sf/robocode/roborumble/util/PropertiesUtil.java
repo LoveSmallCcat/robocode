@@ -11,6 +11,7 @@ package net.sf.robocode.roborumble.util;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -100,6 +101,18 @@ public final class PropertiesUtil {
 		}
 		return true;
 	}
+
+	@Override
+	public int hashCode() {
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+
+
 
 	/**
 	 * Tests the {@link PropertiesUtil#getProperties(String)} method with a valid properties file.
@@ -268,5 +281,20 @@ public final class PropertiesUtil {
 		}
 	}
 
+	@Test
+	void equalsTest() {
+		PropertiesUtil propertiesUtil = new PropertiesUtil();
+		PropertiesUtil propertiesUtil1 = new PropertiesUtil();
+		assertNotEquals(propertiesUtil1, propertiesUtil);
+	}
+
+	@Test
+	void hashCodeTest() {
+		PropertiesUtil propertiesUtil = new PropertiesUtil();
+		PropertiesUtil propertiesUtil1 = new PropertiesUtil();
+		int test1 = propertiesUtil.hashCode();
+		int test2 = propertiesUtil1.hashCode();
+		assertNotEquals(test1, test2);
+	}
 
 }

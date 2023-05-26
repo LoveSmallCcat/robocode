@@ -8,19 +8,27 @@
 package net.sf.robocode.roborumble.battlesengine;
 
 
+import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.parameters;
 import static net.sf.robocode.roborumble.util.PropertiesUtil.getProperties;
 import static net.sf.robocode.roborumble.util.PropertiesUtil.storeProperties;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.io.File;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.util.Properties;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 import net.sf.robocode.repository.CodeSizeCalculator;
 import net.sf.robocode.roborumble.util.PropertiesUtil;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.ParameterContext;
+import org.junit.jupiter.api.extension.ParameterResolver;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 
 /**
@@ -34,8 +42,8 @@ import org.junit.jupiter.api.Test;
  * @author Flemming N. Larsen (contributor)
  */
 public class CompetitionsSelector {
-	private final String repository;
-	private final String sizesfile;
+	private String repository;
+	private String sizesfile;
 	private final Properties sizes;
 
 	public CompetitionsSelector(String sizesfile, String repository) {
@@ -85,8 +93,24 @@ public class CompetitionsSelector {
 		return checkCompetitorForSize(bot1, maxsize) && checkCompetitorForSize(bot2, maxsize);
 	}
 
-	public Properties getSizes() {
-		return sizes;
-	}
+	/**
+	 * Tests the getProperties method of the PropertiesUtil class.
+	 * It reads properties from the specified file and asserts that the properties object is not null.
+	 */
+	@Test
+	public void testGetProperties() {
+		// Provide the path to the sizes file
+		String sizesFile = "./path/to/sizesfile.properties";
 
+		// Call the getProperties method
+		Properties properties = PropertiesUtil.getProperties(sizesFile);
+
+		// Assert that the properties object is not null
+		assertNotNull(properties);
+
+		// Perform further assertions on the properties object if needed
+		// For example, you can check if specific properties are present or have expected values
+		Assertions.assertTrue(properties.containsKey("property1"));
+		Assertions.assertEquals("value1", properties.getProperty("property1"));
+	}
 }

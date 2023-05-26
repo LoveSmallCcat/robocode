@@ -22,6 +22,7 @@ import java.util.zip.InflaterInputStream;
 
 import static net.sf.robocode.roborumble.util.PropertiesUtil.getProperties;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -43,7 +44,7 @@ public class FileTransfer {
 	static {
 		readProperties();
 	}
-	
+
 	/**
 	 * Represents the download status returned when downloading files.
 	 */
@@ -591,4 +592,26 @@ public class FileTransfer {
 			} catch (NumberFormatException ignore) {}
 		}
 	}
+
+	/**
+	 * Tests the functionality of the getProperties() method.
+	 * It verifies if the method correctly loads properties from a file.
+	 */
+	@Test
+	public void testGetProperties() {
+		// Provide a test properties file path
+		String filePath = "./path/to/test.properties";
+
+		// Call the getProperties() method
+		Properties properties = getProperties(filePath);
+
+		// Verify the functionality
+		assertNotNull(properties, "Properties should not be null");
+
+		// Perform assertions on specific properties
+		assertEquals("value1", properties.getProperty("key1"), "Property key1 should have value 'value1'");
+		assertEquals("value2", properties.getProperty("key2"), "Property key2 should have value 'value2'");
+		// Add more assertions as needed
+	}
+
 }
